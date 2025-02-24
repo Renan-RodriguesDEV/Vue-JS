@@ -2,7 +2,9 @@
 
 - **Create project**
 
-  `npm create vite@latest <nome-diretorio>`
+  ```bash
+  npm create vite@latest <nome-diretorio>
+  ```
 
 - **Build project**
 
@@ -17,28 +19,40 @@
 
 - **Installing vue**
 
-  `npm install -g @vue/cli`
+  ```bash
+  npm install -g @vue/cli`
+  ```
 
 - **Check version**
 
-  `vue --version`
+  ```bash
+  vue --version
+  ```
 
 - **Create project**
 
-  `vue create <nome-do-projeto>`
+  ```bash
+  vue create <nome-do-projeto>
+  ```
 
   Confirme a mensagem com **Y**, após isso pressione **enter** e escolhe a versão **Default ([Vue 3] babel, eslint)**
 
   **or**
 
-  `npm create vue@latest <nome-do-projeto>`
+  ```bash
+  npm create vue@latest <nome-do-projeto>
+  ```
 
   Nege as opções de suporte JSX e adicionar TypeScript, e confirme com **Y** caso queira ESLint e Templates já configurados com rotas, pinia e tests
 
   - **Intalling dependency**
 
-  `npm install`
+  ```bash
+  npm install
+  ```
 
   - **Run app**
 
-  `npm run dev`
+  ```bash
+  npm run dev
+  ```
