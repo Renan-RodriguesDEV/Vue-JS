@@ -1,4 +1,4 @@
-## app.vue
+## App.vue
 
 ```javascript
 <template>
