@@ -1,16 +1,12 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to the django "/>
+  <SideBar />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import SideBar from './components/SideBar.vue';
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+  components: { SideBar }
 }
 </script>
 
