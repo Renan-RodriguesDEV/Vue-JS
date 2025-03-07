@@ -1,23 +1,29 @@
 <script>
 export default {
     name: 'SideBar',
+    props: {
+        isVisible: {
+            type: Boolean,
+            default: true
+        }
+    },
     data() {
         return {
             icons: [
+                { name: '', link: '', img: '' },
                 { name: 'home', link: '/', img: 'fas fa-house-chimney' },
                 { name: 'docs', link: '/docs', img: 'fas fa-book' },
                 { name: 'help', link: '/help', img: 'fas fa-person' }
-            ]
+            ],
         }
-    }
+    },
+
+
 }
 </script>
 <template>
-    <nav class="sidebar">
+    <nav class="sidebar" v-show="isVisible">
         <div class="container">
-            <div class="logo">
-                <a href=""></a>
-            </div>
 
             <ul class="side-links">
                 <li v-for="(icon, idx) in icons" :key="idx">

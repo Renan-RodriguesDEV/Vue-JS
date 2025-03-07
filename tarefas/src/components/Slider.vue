@@ -8,20 +8,29 @@ export default {
                 "https://wallpapers.com/images/hd/kawaii-anime-cat-fyhhydnii35w556x.jpg",
                 "https://img.freepik.com/fotos-premium/papeis-de-parede-e-imagens-de-gato-com-olhos-verdes-para-seu-desktop-telefone-tablet-e-celular_899894-31674.jpg?w=360",
                 "https://wallpapers.com/images/hd/kawaii-anime-cat-i3dbj1zfk4j5i0ju.jpg"],
-            index: 0
+            index: 0,
+
         }
     },
     methods: {
         prev() {
-            this.index = (this.index - 1) % this.images.length
+            if (this.index === 0) {
+                this.index = this.images.length - 1
+            } else {
+                this.index = (this.index - 1) % this.images.length
+            }
         },
         next() {
-            this.index = (this.index + 1) % this.images.length
+            if (this.index === this.images.length - 1) {
+                this.index = 0
+            } else {
+                this.index = (this.index + 1) % this.images.length
+            }
         }
     },
-    mounted() {
-        setInterval(() => this.next(), 3000)
-    }
+    // mounted() {
+    //     setInterval(() => this.next(), 10_000)
+    // }
 }
 </script>
 <template>
@@ -40,10 +49,11 @@ export default {
 <style scoped>
 .slider {
     position: relative;
-    width: 600px;
-    height: 300px;
+    /* width: 600px;
+    height: 300px; */
     overflow: hidden;
     border-radius: 10px;
+    background: linear-gradient(90deg, rgba(177, 0, 0, 0.5), rgba(249, 72, 255, 0.5));
 }
 
 .slides {
