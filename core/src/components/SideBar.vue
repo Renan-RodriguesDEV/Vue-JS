@@ -10,9 +10,9 @@ export default {
                 { name: 'help', link: '/help', img: 'fas fa-person' }
             ],
             isVisible: true,
-            // classToggle: 'fas fa-angle-double-left'
         }
     },
+    // 
     computed: {
         toggleContainerStyle() {
             return {
@@ -23,7 +23,7 @@ export default {
             return this.isVisible ? 'fas fa-angle-double-left' : 'fas fa-angle-double-right'
         },
     },
-    // funcoes
+    // funcções a executar no v-on
     methods: {
         // caso a funçao seja chamada o v-show é alterado
         toggleSidebar() {
@@ -48,12 +48,13 @@ export default {
     </nav>
     <!-- Alterar o style do container de toggle -->
     <div class="toggle-container" :style="toggleContainerStyle">
+        <!-- v-on para chamar a função ao clickar -->
         <button class="toggle-btn" @click="toggleSidebar">
             <i :class="toggleBtnClass"></i>
         </button>
     </div>
 </template>
-
+<!-- style com scoped para aplicar a estilização somente a esse componente -->
 <style scoped>
 .sidebar {
     position: fixed;

@@ -2,6 +2,7 @@
   <div class="container">
     <NavBar :nome="nome" />
     <div class="slider-container">
+      <!-- Slide bar passando props atraves do v-bind -->
       <SlideBar :images="dbz" />
       <SlideBar :images="frieren" />
       <SlideBar :images="flash" />
@@ -9,7 +10,6 @@
     <SideBar />
   </div>
 </template>
-
 <script>
 // importação dos componentes 
 import Swal from 'sweetalert2'
@@ -23,12 +23,17 @@ export default {
   components: {
     NavBar, SideBar, SlideBar
   },
+  // objetos e variaveis 
   data() {
     return { dbz: dbz, frieren: frieren, flash: zoom100, nome: '' }
   },
+  // método chamado quando o componente estiver pronto para ser renderizado
   mounted() {
+    // se nome no localStorage for null, pede para o usuário digitar o nome
     if (localStorage.getItem('nome') === null) {
+      // espera 3s para exibir o modal
       setTimeout(() => {
+        // exibe o modal
         Swal.fire({
           title: 'Digite seu nome',
           input: 'text',
@@ -36,17 +41,19 @@ export default {
           showCancelButton: false,
           confirmButtonText: 'Enviar'
         }).then((result) => {
+          // se o resultado for um texto válido, salva no localStorage e exibe uma confirmação
           this.nome = result.value || 'Visitante'
           localStorage.setItem('nome', this.nome)
           Swal.fire(`Bem vindo, ${this.nome}!`)
         })
+        // tempo de espera 3s
       }, 3000)
 
     }
   }
 }
 </script>
-
+<!-- style com scoped para aplicar a estilização somente a esse componente -->
 <style scoped>
 /* Configura o container para centralizar os componentes */
 .container {

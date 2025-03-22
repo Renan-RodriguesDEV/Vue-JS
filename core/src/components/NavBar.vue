@@ -1,6 +1,7 @@
 <script>
 export default {
   name: 'NavBar',
+  // objetos da navbar (icones)
   data() {
     return {
       navItems: [
@@ -12,18 +13,26 @@ export default {
 
     }
   },
+  // props para receber o nome do usuário
   props: {
     nome: {
       type: String, default: localStorage.getItem('nome') || 'Visitante'
     }
   },
+  // Define propriedades computadas (com cache).
+  computed: {
+    // função para pegar o nome do usuário
+    getNome() {
+      return localStorage.getItem('nome')
+    }
+  }
 }
 </script>
 <template>
   <nav class="navbar">
     <div class="navbar-container">
       <div class="logo">
-        <a href="/"><i class="logo">Welcome X-Mangas {{ nome }}</i></a>
+        <a href="/"><i class="logo">Welcome X-Mangas {{ getNome }}</i></a>
       </div>
       <ul class="nav-links">
         <!-- v-for para construir a lista a partir da variavel objeto navItems -->

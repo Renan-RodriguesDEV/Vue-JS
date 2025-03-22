@@ -1,6 +1,7 @@
 <script>
 export default {
     name: 'SlideBar',
+    // props do objeto recebido com imagens
     props: {
         images: {
             type: Object,
@@ -18,18 +19,20 @@ export default {
                 this.index = this.images.length - 1;
             }
             else {
-                this.index = (this.index - 1) % this.images.length;
+                this.index--
             }
         },
         next() {
             if (this.index === this.images.length - 1) {
                 this.index = 0;
             } else {
-                this.index = (this.index + 1) % this.images.length;
+                this.index++
             }
         }
     },
+    // função chamada quando o elemeneto é montado
     mounted() {
+        // executa next() a cada 5s
         setInterval(() => this.next(), 5_000)
     }
 }
@@ -42,11 +45,12 @@ export default {
                 <img :src="image.link" alt="Image of manga">
             </div>
         </div>
+        <!-- v-on para chamar funções com @click -->
         <button class="previous" @click="prev">&lt;</button>
         <button class="next" @click="next">&gt;</button>
     </div>
 </template>
-
+<!-- style com scoped para aplicar a estilização somente a esse componente -->
 <style scoped>
 .slider {
     position: relative;
