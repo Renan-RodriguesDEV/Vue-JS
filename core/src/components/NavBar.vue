@@ -3,11 +3,10 @@ export default {
   name: 'NavBar',
   data() {
     return {
-
       navItems: [
         { name: 'Home', link: '/', icon: 'fas fa-home' },
         { name: 'Sobre', link: '/sobre', icon: 'fas fa-info-circle' },
-        { name: 'Serviços', link: '/servicos', icon: 'fas fa-cogs' },
+        { name: 'Books', link: '/books', icon: 'fas fa-book' },
         { name: 'Contato', link: '/contatos', icon: 'fas fa-envelope' },
       ]
 
@@ -15,16 +14,16 @@ export default {
   },
   props: {
     nome: {
-      type: String
+      type: String, default: localStorage.getItem('nome') || 'Visitante'
     }
-  }
+  },
 }
 </script>
 <template>
   <nav class="navbar">
     <div class="navbar-container">
       <div class="logo">
-        <a href="/"><i class="logo">Welcome Cabaré {{ nome }}</i></a>
+        <a href="/"><i class="logo">Welcome X-Mangas {{ nome }}</i></a>
       </div>
       <ul class="nav-links">
         <!-- v-for para construir a lista a partir da variavel objeto navItems -->

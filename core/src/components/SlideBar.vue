@@ -3,7 +3,7 @@ export default {
     name: 'SlideBar',
     props: {
         images: {
-            type: Array,
+            type: Object,
         }
     },
     data() {
@@ -28,6 +28,9 @@ export default {
                 this.index = (this.index + 1) % this.images.length;
             }
         }
+    },
+    mounted() {
+        setInterval(() => this.next(), 5_000)
     }
 }
 </script>
@@ -36,7 +39,7 @@ export default {
     <div class="slider">
         <div class="slides" :style="{ transform: `translateX(-${index * 100}%)` }">
             <div class="slide" v-for="(image, i) in images" :key="i">
-                <img :src="image" alt="Gatinho fofo">
+                <img :src="image.link" alt="Image of manga">
             </div>
         </div>
         <button class="previous" @click="prev">&lt;</button>

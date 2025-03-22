@@ -10,7 +10,7 @@ export default {
                 { name: 'help', link: '/help', img: 'fas fa-person' }
             ],
             isVisible: true,
-            classToggle: 'fas fa-angle-double-left'
+            // classToggle: 'fas fa-angle-double-left'
         }
     },
     computed: {
@@ -18,12 +18,16 @@ export default {
             return {
                 left: this.isVisible ? '80px' : '0px'
             }
-        }
+        },
+        toggleBtnClass() {
+            return this.isVisible ? 'fas fa-angle-double-left' : 'fas fa-angle-double-right'
+        },
     },
+    // funcoes
     methods: {
+        // caso a funçao seja chamada o v-show é alterado
         toggleSidebar() {
             this.isVisible = !this.isVisible;
-            this.classToggle = this.isVisible ? 'fas fa-angle-double-left' : 'fas fa-angle-double-right';
         }
     }
 }
@@ -33,6 +37,7 @@ export default {
     <nav class="sidebar" v-show="isVisible">
         <div class="container">
             <ul class="side-links">
+                <!-- v-for para iterar sobre os icones -->
                 <li v-for="(icon, idx) in icons" :key="idx">
                     <a :href="icon.link">
                         <i :class="icon.img" :data-name="icon.name"></i>
@@ -44,7 +49,7 @@ export default {
     <!-- Alterar o style do container de toggle -->
     <div class="toggle-container" :style="toggleContainerStyle">
         <button class="toggle-btn" @click="toggleSidebar">
-            <i :class="classToggle"></i>
+            <i :class="toggleBtnClass"></i>
         </button>
     </div>
 </template>
@@ -56,7 +61,7 @@ export default {
     top: 0;
     height: 100vh;
     width: 80px;
-    background: linear-gradient(#3b009b, #7621ff);
+    background: linear-gradient(rgba(59, 0, 155, 0.521), rgba(118, 33, 255, 0.493));
     padding: 10px 0;
     transition: width 0.3s ease;
 }
@@ -127,7 +132,7 @@ export default {
 .toggle-btn {
     background-color: transparent;
     border: none;
-    color: #000089;
+    color: gray;
     cursor: pointer;
     font-size: 1rem;
 }
