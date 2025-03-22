@@ -1,0 +1,138 @@
+<script>
+export default {
+    name: 'SideBar',
+    data() {
+        return {
+            icons: [
+                { name: '', link: '', img: '' },
+                { name: 'home', link: '/', img: 'fas fa-house-chimney' },
+                { name: 'docs', link: '/docs', img: 'fas fa-book' },
+                { name: 'help', link: '/help', img: 'fas fa-person' }
+            ],
+            isVisible: true,
+            classToggle: 'fas fa-angle-double-left'
+        }
+    },
+    computed: {
+        toggleContainerStyle() {
+            return {
+                left: this.isVisible ? '80px' : '0px'
+            }
+        }
+    },
+    methods: {
+        toggleSidebar() {
+            this.isVisible = !this.isVisible;
+            this.classToggle = this.isVisible ? 'fas fa-angle-double-left' : 'fas fa-angle-double-right';
+        }
+    }
+}
+</script>
+
+<template>
+    <nav class="sidebar" v-show="isVisible">
+        <div class="container">
+            <ul class="side-links">
+                <li v-for="(icon, idx) in icons" :key="idx">
+                    <a :href="icon.link">
+                        <i :class="icon.img" :data-name="icon.name"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Alterar o style do container de toggle -->
+    <div class="toggle-container" :style="toggleContainerStyle">
+        <button class="toggle-btn" @click="toggleSidebar">
+            <i :class="classToggle"></i>
+        </button>
+    </div>
+</template>
+
+<style scoped>
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 80px;
+    background: linear-gradient(#3b009b, #7621ff);
+    padding: 10px 0;
+    transition: width 0.3s ease;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.side-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.side-links li {
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.side-links a {
+    color: #ffffff;
+    text-decoration: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.side-links i {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Nome do ícone */
+.side-links i::after {
+    content: attr(data-name);
+    font-size: 0.7rem;
+    margin-top: 5px;
+    font-family: sans-serif;
+}
+
+.side-links a:hover {
+    color: #ef7afc;
+}
+
+/* Botão de toggle posicionado dinamicamente */
+.toggle-container {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+
+.toggle-btn {
+    background-color: transparent;
+    border: none;
+    color: #000089;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.toggle-btn:hover {
+    color: #ef7afc;
+}
+</style>
