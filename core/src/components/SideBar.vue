@@ -5,9 +5,13 @@ export default {
         return {
             icons: [
                 { name: '', link: '', img: '' },
+                { name: '', link: '', img: '' },
                 { name: 'home', link: '/', img: 'fas fa-house-chimney' },
-                { name: 'docs', link: '/docs', img: 'fas fa-book' },
-                { name: 'help', link: '/help', img: 'fas fa-person' }
+                { name: 'mangas', link: '/mangas', img: 'fas fa-book-open' },
+                { name: 'animes', link: '/animes', img: 'fas fa-tv' },
+                { name: 'hentais', link: '/hentais', img: 'fas fa-video' },
+                { name: 'heroes', link: '/heroes', img: 'fas fa-user-secret' },
+                { name: 'kwai', link: '/kwai', img: 'fas fa-camera-retro' },
             ],
             isVisible: true,
         }
