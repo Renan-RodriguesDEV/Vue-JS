@@ -51,16 +51,16 @@
   npm install
   ```
 
-  - **Run app**
+- **Run app**
 
-  # Vite
+  ## Vite
 
   ```bash
   npm run dev
   ```
 
-  # Vue
+  ## Vue
 
   ```bash
-  npm run dev
+  npm run serve
   ```
