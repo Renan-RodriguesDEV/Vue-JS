@@ -16,7 +16,7 @@ export default {
             isVisible: true,
         }
     },
-    // 
+    // Define propriedades computadas (com cache).
     computed: {
         toggleContainerStyle() {
             return {

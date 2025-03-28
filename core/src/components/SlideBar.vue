@@ -4,7 +4,7 @@ export default {
     // props do objeto recebido com imagens
     props: {
         images: {
-            type: Object,
+            type: Array,
         }
     },
     data() {
@@ -42,7 +42,7 @@ export default {
     <div class="slider">
         <div class="slides" :style="{ transform: `translateX(-${index * 100}%)` }">
             <div class="slide" v-for="(image, i) in images" :key="i">
-                <img :src="image.link" alt="Image of manga">
+                <img :src="image.link" :alt="image.title">
             </div>
         </div>
         <!-- v-on para chamar funções com @click -->

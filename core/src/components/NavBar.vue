@@ -7,8 +7,7 @@ export default {
       navItems: [
         { name: 'Home', link: '/', icon: 'fas fa-home' },
         { name: 'Sobre', link: '/sobre', icon: 'fas fa-info-circle' },
-        { name: 'Books', link: '/books', icon: 'fas fa-book' },
-        { name: 'Contato', link: '/contatos', icon: 'fas fa-envelope' },
+        { name: 'Contato', link: '/contatos', icon: 'fas fa-person' },
       ]
 
     }
@@ -32,7 +31,8 @@ export default {
   <nav class="navbar">
     <div class="navbar-container">
       <div class="logo">
-        <a href="/"><i class="logo">Welcome X-Mangas {{ nome !== null && nome !== '' ? nome : getNome }}</i></a>
+        <a href="/"><i class="logo">Hello, {{ nome !== null && nome !== '' ? nome : getNome }}, welcome back to HQs and
+            Mangas K.O </i><i class="fas fa-cat"></i></a>
       </div>
       <ul class="nav-links">
         <!-- v-for para construir a lista a partir da variavel objeto navItems -->
@@ -47,7 +47,7 @@ export default {
 <!-- style com scoped para aplicar a estilização somente a esse componente -->
 <style scoped>
 .navbar {
-  background: linear-gradient(#3b009b, #7621ff);
+  background: linear-gradient(#3b009bd6, #7621ffce);
   padding: 10px 0;
   position: fixed;
   top: 0;
