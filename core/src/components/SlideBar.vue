@@ -33,7 +33,7 @@ export default {
     // função chamada quando o elemeneto é montado
     mounted() {
         // executa next() a cada 5s
-        setInterval(() => this.next(), 5_000)
+        setInterval(() => this.next(), 15_000)
     }
 }
 </script>

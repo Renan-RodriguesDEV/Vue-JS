@@ -34,12 +34,15 @@ import SearchBar from './components/SearchBar.vue';
 import { dbz, dc_heroes, dc_villains, frieren, hells_paradise, marvel_heroes, marvel_villains, naruto, zoom100 } from './assets/images';
 export default {
   name: 'App',
+  // registrando nomes dos componentes importados
   components: {
     NavBar, SideBar, SlideBar, SearchBar
   },
+  // props do objeto recebido com imagens
   data() {
     return { dbz, dc_heroes, dc_villains, frieren, hells_paradise, marvel_heroes, marvel_villains, naruto, zoom100, nome: '', searchQuery: '' }
   },
+  // Define propriedades computadas (com cache).
   computed: {
     filteredDbz() {
       if (!this.searchQuery) return this.dbz
@@ -78,8 +81,12 @@ export default {
       return this.dc_heroes.filter(image => image.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
     }
   },
+  // executa a função quando o componente é montado
+  // caso o nome não esteja no localStorage, ele pede para o usuário digitar o nome
   mounted() {
     if (localStorage.getItem('nome') === null) {
+      // setTimeout para dar delay de 3s
+      // para o usuário não ficar confuso com o alerta logo de cara
       setTimeout(() => {
         Swal.fire({
           title: 'Digite seu nome',
@@ -88,6 +95,8 @@ export default {
           showCancelButton: false,
           confirmButtonText: 'Enviar'
         }).then((result) => {
+          // se o usuário não digitar nada, o nome é 'Visitante'
+          // se o usuário digitar, o nome é o que ele digitou
           this.nome = result.value || 'Visitante'
           localStorage.setItem('nome', this.nome)
           Swal.fire(`Bem vindo, ${this.nome}!`)
