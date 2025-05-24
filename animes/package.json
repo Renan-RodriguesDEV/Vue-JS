@@ -1,5 +1,5 @@
 {
-  "name": "my-vueproject",
+  "name": "animes",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,7 +10,6 @@
   "dependencies": {
     "axios": "^1.9.0",
     "core-js": "^3.8.3",
-    "my-vueproject": "file:",
     "vue": "^3.2.13"
   },
   "devDependencies": {

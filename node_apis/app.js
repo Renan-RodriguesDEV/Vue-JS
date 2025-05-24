@@ -14,7 +14,7 @@ const db_config = {
   host: "localhost",
   user: "root",
   password: "",
-  database: "escola",
+  database: "escolas",
 };
 // rota GET para retornar todos os alunos
 app.get("/alunos", async (request, response) => {

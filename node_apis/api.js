@@ -26,6 +26,22 @@ app.get("/animes", async (req, res) => {
     res.status(500).json({ error: "Erro ao conectar ao banco de dados" });
   }
 });
+// GET para retornar todos os animes
+app.get("/animes/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const conn = await mysql.createConnection(config);
+    const [rows] = await conn.execute(
+      `SELECT nome,genero,autor FROM animes WHERE id = ?`[id]
+    );
+    await conn.end();
+
+    res.json(rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao conectar ao banco de dados" });
+  }
+});
 
 // POST para adicionar um novo anime
 app.post("/animes/", async (req, res) => {
