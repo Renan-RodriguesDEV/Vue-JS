@@ -15,16 +15,16 @@ import axios from 'axios';
 const editingAnime = ref(null);
 const animeList = ref();
 
-const api = axios.create({
-  baseURL: 'http://localhost:3000',
-});
+// const api = axios.create({
+//   baseURL: 'http://localhost:3000',
+// });
 
 async function handleSubmit(animeData) {
   try {
     if (animeData.id) {
-      await api.put(`/animes/${animeData.id}`, animeData);
+      await axios.put(`/animes/${animeData.id}`, animeData);
     } else {
-      await api.post('/animes', animeData);
+      await axios.post('/animes', animeData);
     }
     animeList.value.fetchAnimes();
     editingAnime.value = null;
@@ -39,7 +39,7 @@ function editAnime(anime) {
 
 async function deleteAnime(id) {
   try {
-    await api.delete(`/animes/${id}`);
+    await axios.delete(`/animes/${id}`);
     animeList.value.fetchAnimes();
   } catch (error) {
     console.error('Erro ao excluir anime:', error);
