@@ -17,7 +17,9 @@ const config = {
 app.get("/animes", async (req, res) => {
   try {
     const conn = await mysql.createConnection(config);
-    const [rows] = await conn.execute(`SELECT nome,genero,autor FROM animes`);
+    const [rows] = await conn.execute(
+      `SELECT id,nome,genero,autor FROM animes`
+    );
     await conn.end();
 
     res.json(rows);
@@ -32,7 +34,7 @@ app.get("/animes/:id", async (req, res) => {
     const { id } = req.params;
     const conn = await mysql.createConnection(config);
     const [rows] = await conn.execute(
-      `SELECT nome,genero,autor FROM animes WHERE id = ?`[id]
+      `SELECT id,nome,genero,autor FROM animes WHERE id = ?`[id]
     );
     await conn.end();
 

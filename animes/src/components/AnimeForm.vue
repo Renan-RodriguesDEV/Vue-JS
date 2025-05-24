@@ -20,42 +20,54 @@
   </form>
 </template>
 
-<script setup>
-/* global defineProps, defineEmits */
-import { ref, watch } from 'vue';
+<script>
+export default {
+  name: 'AnimeForm',
+  data() {
+    return {
+      formData: {
+        nome: '',
+        genero: '',
+        autor: ''
+      }
+    }
+  },
+  watch: {
+    editingAnime: {
+      handler(newVal) {
+        if (newVal) {
+          this.formData = { ...newVal };
+        } else {
+          this.resetForm();
+        }
+      },
+      immediate: true
+    }
+  },
+  props: {
+    editingAnime: {
+      type: Object,
+      default: null
+    }
+  },
+  methods: {
 
-const props = defineProps(['editingAnime']);
-const emit = defineEmits(['submit']);
-
-const formData = ref({
-  nome: '',
-  genero: '',
-  autor: ''
-});
-
-watch(() => props.editingAnime, (newVal) => {
-  if (newVal) {
-    formData.value = { ...newVal };
-  } else {
-    resetForm();
+    submitForm() {
+      this.$emit('save', this.formData);
+      this.resetForm();
+    },
+    cancelEdit() {
+      this.$emit('submit', null);
+      this.resetForm();
+    },
+    resetForm() {
+      this.formData = {
+        nome: '',
+        genero: '',
+        autor: ''
+      };
+    }
   }
-});
+};
 
-function submitForm() {
-  emit('submit', formData.value);
-  resetForm();
-}
-
-function cancelEdit() {
-  emit('submit', null);
-  resetForm();
-}
-
-function resetForm() {
-  formData.value = {
-    nome: '',
-    genero: '',
-    autor: ''
-  };
-}
 </script>
