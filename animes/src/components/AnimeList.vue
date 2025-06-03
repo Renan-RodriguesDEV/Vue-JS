@@ -3,8 +3,10 @@
         <h1>Seus animes e mangas</h1>
         <div v-if="loading">Carregando...</div>
         <ul v-else>
-            <li v-for="anime in animes" :key="anime.id">
-                {{ anime.nome }} - {{ anime.genero }} - {{ anime.autor }}
+            <li v-for="anime in animes" :key="anime.id" class="anime-item">
+                <span class="anime-info">
+                    {{ anime.nome }} - {{ anime.genero }} - {{ anime.autor }}
+                </span>
                 <span class="btn-group">
                     <button class="btn excluir" @click="deleteAnime(anime.id)">Excluir</button>
                     <button class="btn editar" @click="fillForm(anime.id)">Editar</button>
@@ -13,6 +15,7 @@
         </ul>
     </div>
 </template>
+
 <script>
 import axios from 'axios';
 
@@ -47,27 +50,17 @@ export default {
         fillForm(id) {
             const anime = this.animes.find(a => a.id === id);
             this.$emit('edit-anime', anime);
+            // Scroll para o topo da página
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     },
     mounted() {
         this.fetchAnimes();
     },
-
 }
-
 </script>
-<style scoped>
-.anime-list-container {
-    background: #181a1b;
-    color: #f1f1f1;
-    min-height: 100vh;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 2px 12px #000a;
-    max-width: 600px;
-    margin: 2rem auto;
-}
 
+<style scoped>
 h1 {
     text-align: center;
     margin-bottom: 2rem;
@@ -81,7 +74,7 @@ h1 {
     font-size: 1.2rem;
 }
 
-.anime-list {
+ul {
     list-style: none;
     padding: 0;
 }
@@ -104,6 +97,7 @@ h1 {
 
 .anime-info {
     flex: 1;
+    color: #f1f1f1;
 }
 
 .btn-group {
@@ -119,7 +113,6 @@ button {
     cursor: pointer;
     font-size: 1rem;
     transition: background 0.2s, color 0.2s;
-    margin-left: 0.5rem;
 }
 
 .btn.excluir {

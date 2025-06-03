@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 import AnimeForm from './components/AnimeForm.vue';
 import AnimeList from './components/AnimeList.vue';
 import axios from 'axios';
@@ -33,24 +34,28 @@ export default {
       if (anime && anime.id) {
         axios.put(`/animes/${anime.id}`, anime)
           .then(() => {
-            alert('Anime atualizado com sucesso');
+            Swal.fire('Sucesso!', 'Anime atualizado com sucesso', 'sucess');
             this.editingAnime = null;
             this.$refs.animeList.fetchAnimes();
+            // Scroll para o final da página
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
           })
           .catch(error => {
-            alert('Erro ao atualizar anime!');
+            Swal.fire('Ops!', 'Erro ao atualizar anime!', 'error');
             console.error(error);
+            // Scroll para o final da página
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
           });
       } else if (anime) {
         console.log('Enviando:', anime);
         axios.post('/animes', anime)
           .then(() => {
-            alert('Anime enviado com sucesso');
+            Swal.fire('Sucesso!', 'Anime enviado com sucesso', 'sucess');
             this.editingAnime = null;
             this.$refs.animeList.fetchAnimes();
           })
           .catch(error => {
-            alert('Erro ao adicionar anime!');
+            Swal.fire('Ops!', 'Erro ao adicionar anime!', 'error');
             console.error(error);
           });
       }
@@ -73,12 +78,6 @@ export default {
 };
 
 </script>
-<style>
-#app {
-  background: #181a1b;
-  min-height: 100vh;
-}
-</style>
 <style scoped>
 body {
   background: #181a1b;
@@ -91,8 +90,10 @@ div {
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 2px 12px #000a;
-  max-width: 700px;
-  margin: 2rem auto;
+  max-width: 1200px;
+  /* Aumentado de 700px para 1200px */
+  margin: 1rem auto;
+  /* Reduzido de 2rem para 1rem */
 }
 
 h1 {

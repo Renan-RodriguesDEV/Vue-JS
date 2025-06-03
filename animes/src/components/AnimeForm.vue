@@ -56,6 +56,7 @@ export default {
     submitForm() {
       this.$emit('save', this.formData);
       this.resetForm();
+
     },
     cancelEdit() {
       this.$emit('submit', null);
@@ -79,8 +80,10 @@ form {
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 2px 12px #000a;
-  max-width: 400px;
-  margin: 2rem auto;
+  max-width: 600px;
+  /* Aumentado de 400px para 600px */
+  margin: 1rem auto;
+  /* Reduzido de 2rem para 1rem */
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
